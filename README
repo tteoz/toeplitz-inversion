@@ -1,0 +1,54 @@
+
+
+
+TOEPLITZ TRIANGULAR MATRIX INVERSION
+
+This was for the project of Parallel Calculus (September 2015) course.
+The problem we solved is the inversion of a particular type of matrices called
+Toeplitz Triangular Matrix. This matrix permits to be inverted with a
+sequence of DFT operations.
+We designed the code to run on an IBM parallel machine, using MPI as the model for
+nodes communication and the famous FFTW Fourier transform library for DFT operations.
+We needed to touch some Makefiles of the FFTW tarball in order to build the library
+on AIX-6.1 operating system, this is why we keep a patched version inside this
+package. (I'm sorry to not provide a proper patch for FFTW porting)
+This package has been tested only on AIX-6.1 Power7 system.
+
+
+
+DIRECTORY CONTENT DESCRIPTION
+
+fftw-build/               keeps compiled version of fftw-3.3.4
+
+fftw-3.3.4-patched        patched version of fftw for aix power7a dei. It
+                          differs from the original package because we have
+                          edited some Makefiles in order to compile without errors
+
+script/                   files to automate processs of filtering outputs,
+                          submission to LoadLeveler
+
+src/                      ...
+
+src/mpiprof               MPI Intercepter. It follows 'nameshift' convention.
+
+
+
+BUILDING
+
+$ cd src
+$ make
+
+Executables are generated inside src/
+
+
+
+LOADLEVELER SUBMISSION
+
+To submit a test job use
+
+$ llsubmit run-experiment.job
+
+Edit to control number of processes to allocate and input size
+
+Timing informations are printed in results/err.txt results/out.txt
+

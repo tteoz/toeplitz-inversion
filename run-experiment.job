@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#@ job_type = parallel
+#@ initialdir = ./
+#@ input = /dev/null
+
+#@ output = results/out.txt
+#@ error = results/err.txt
+#@ notification = error
+#@ class = medium 
+#@ blocking = UNLIMITED
+#@ total_tasks = 12 
+#@ queue
+
+./src/polydiv 16
+
